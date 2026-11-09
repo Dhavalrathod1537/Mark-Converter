@@ -1,10 +1,10 @@
-# 📊 Marks to Percentage Converter
+📊 Marks to Percentage Converter
 
 A free, open-source web application to convert academic scores between different formats. Perfect for students who need to calculate percentages from CGPA, SPI, grades, or raw marks.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## 🌟 Features
+🌟 Features
 
 - **CGPA to Percentage** - Convert Cumulative Grade Point Average to percentage
   - Supports 10, 4, and 5 point scales
@@ -29,7 +29,7 @@ A free, open-source web application to convert academic scores between different
 - **WhatsApp result sharing** - Open WhatsApp with a result prefilled; choose a recipient and send it
 - **Percentage reactions** - Encouraging messages based on the calculated percentage
 
-## 🚀 Quick Start
+🚀 Quick Start
 
 1. **Clone the repository**
    ```bash
@@ -48,15 +48,15 @@ A free, open-source web application to convert academic scores between different
 
 3. **That's it!** No installation, no dependencies, no build process.
 
-## 💻 Usage
+💻 Usage
 
 ### Online
-Visit [your-website-url.com](https://your-website-url.com) to use the calculator directly.
+Visit [ https://dhavalrathod1537.github.io/Mark-Converter/ ] to use the calculator directly.
 
-### Offline
+# Offline
 Download the repository and open `index.html` in any modern web browser. Works completely offline!
 
-## 🎯 How to Use
+🎯 How to Use
 
 1. **Select a calculator** - Choose a converter, semester CGPA calculator, target SPI calculator, or history from the mode buttons:
    - CGPA to %
@@ -74,7 +74,7 @@ Download the repository and open `index.html` in any modern web browser. Works c
 
 4. **View Results** - Your percentage will be displayed with a clear breakdown
 
-## 📱 Responsive Design
+📱 Responsive Design
 
 The converter works perfectly on:
 - 💻 Desktop computers
@@ -82,13 +82,13 @@ The converter works perfectly on:
 - 📲 Tablets
 - 🖥️ Any screen size
 
-## 🔧 Technology Stack
+🔧 Technology Stack
 
 - **HTML5** - Structure
 - **CSS3** - Styling with modern animations
 - **Vanilla JavaScript** - Logic (no frameworks needed!)
 
-## 📂 Project Structure
+📂 Project Structure
 
 ```
 marks-converter/
@@ -99,9 +99,9 @@ marks-converter/
 └── LICENSE             # MIT License
 ```
 
-## 🎨 Customization
+🎨 Customization
 
-### Change Colors
+# Change Colors
 Edit CSS variables in `styles.css`:
 ```css
 :root {
@@ -111,14 +111,14 @@ Edit CSS variables in `styles.css`:
 }
 ```
 
-### Add New Conversion Types
+# Add New Conversion Types
 1. Add a new button in `index.html`
 2. Create a new section with input fields
 3. Add calculation logic in `script.js`
 
-## 📊 Conversion Formulas
+📊 Conversion Formulas
 
-### CGPA to Percentage
+# CGPA to Percentage
 - **10-point scale:** Percentage = CGPA × 9.5
 - **4-point scale:** Percentage = (CGPA / 4) × 100
 - **5-point scale:** Percentage = (CGPA / 5) × 100
@@ -127,7 +127,7 @@ Edit CSS variables in `styles.css`:
 
 The selector displays each formula's confidence and caveat. University formulas may vary by course and regulation year; confirm with your institution before using a result officially. IIT Bombay's CPI conversion is notional. The Nirma CGPA × 10 preset could not be verified against an official source and is clearly marked as unverified. Non-generic Indian formulas require a 10-point scale; the US GPA preset requires a 4-point scale.
 
-### Semester CGPA and target SPI
+# Semester CGPA and target SPI
 ```
 Overall CGPA = sum(SPI × semester credits) / sum(semester credits)
 Required next SPI = (target CGPA × total future credits - current CGPA × completed credits) / next-semester credits
@@ -135,12 +135,12 @@ Required next SPI = (target CGPA × total future credits - current CGPA × compl
 
 Semester SPI and credit entries are stored locally in the browser. The chart is rendered with SVG and does not load external libraries.
 
-### Marks to Percentage
+# Marks to Percentage
 ```
 Percentage = (Obtained Marks / Total Marks) × 100
 ```
 
-### Grade Points
+# Grade Points
 | Grade | Points | Percentage |
 |-------|--------|------------|
 | O     | 10     | 90-100%    |
@@ -152,7 +152,7 @@ Percentage = (Obtained Marks / Total Marks) × 100
 | D     | 4      | 35-39%     |
 | F     | 0      | Below 35%  |
 
-## 🤝 Contributing
+🤝 Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -171,7 +171,7 @@ Contributions are welcome! Here's how you can help:
    ```
 5. **Open a Pull Request**
 
-### Ideas for Contributions
+# Ideas for Contributions
 - Add more grading systems (international standards)
 - Support for percentage to CGPA conversion
 - Dark mode toggle
@@ -180,7 +180,7 @@ Contributions are welcome! Here's how you can help:
 - History of conversions
 - Batch conversion tool
 
-## 📝 License
+📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -204,20 +204,20 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 ```
 
-## 🙏 Acknowledgments
+🙏 Acknowledgments
 
 - Built with ❤️ for students
 - Inspired by the need for simple, accessible academic tools
 - Thanks to all contributors!
 
-## 📧 Contact
+📧 Contact
 
 Have questions or suggestions? Feel free to:
 - Open an issue on GitHub
 - Submit a pull request
 - Star ⭐ the repository if you find it helpful!
 
-## 🌟 Star History
+🌟 Star History
 
 If this project helped you, please consider giving it a star! It helps others discover the tool.
 
