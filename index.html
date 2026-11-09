@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online tool to convert CGPA, SPI, and total marks to percentage. Easy-to-use calculator for students.">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Marks Converter">
+    <title>Marks to Percentage Converter | CGPA, SPI &amp; Marks Calculator</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Liquid glass background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo-wrap">
+                        <svg width="56" height="56" viewBox="100 20 180 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="110" y="30" width="160" height="180" rx="36" fill="#2563EB"/>
+                            <polygon points="190,62 252,86 190,110 128,86" fill="#FFFFFF"/>
+                            <path d="M156 100 L156 124 Q190 144 224 124 L224 100 L190 114 Z" fill="#DBEAFE"/>
+                            <line x1="250" y1="88" x2="250" y2="118" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="250" cy="122" r="5" fill="#FBBF24"/>
+                            <text x="190" y="192" text-anchor="middle" font-size="48" font-weight="500" fill="#FFFFFF" font-family="Arial, sans-serif">%</text>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1>Marks Converter</h1>
+                        <p class="subtitle">Convert your academic scores easily</p>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="converter-card glass-card">
+                <div class="input-group formula-setting">
+                    <label for="university-formula">University percentage formula</label>
+                    <select id="university-formula">
+                        <option value="generic">Generic (CGPA × 9.5)</option>
+                        <option value="iit-bombay">IIT Bombay (CPI × 10, notional)</option>
+                        <option value="iit-other">Other IITs (CPI × 10)</option>
+                        <option value="parul">Parul University (CGPA × 10)</option>
+                        <option value="nirma">Nirma University (CGPA × 10, unverified)</option>
+                        <option value="gtu">GTU (CGPA × 10; verify scheme)</option>
+                        <option value="gtu-legacy">(GTU older) (CGPA − 0.5) × 10</option>
+                        <option value="gujarat">Gujarat University (CGPA × 10)</option>
+                        <option value="mumbai">Mumbai University (CGPA × 7.1 + 11)</option>
+                        <option value="sppu">SPPU / Pune (CGPA × 8.9)</option>
+                        <option value="anna">Anna University (CGPA × 10)</option>
+                        <option value="vtu">VTU latest schemes (CGPA × 10)</option>
+                        <option value="vtu-legacy">(VTU older scheme) (CGPA − 0.75) × 10</option>
+                        <option value="delhi">Delhi University (CGPA × 10)</option>
+                        <option value="aicte">AICTE standard (CGPA − 0.75) × 10</option>
+                        <option value="us4">US GPA (4.0 scale: GPA ÷ 4 × 100)</option>
+                    </select>
+                    <p class="formula-note" id="formula-note" aria-live="polite"></p>
+                </div>
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-mode="cgpa">CGPA to %</button>
+                    <button class="mode-btn" data-mode="spi">SPI to %</button>
+                    <button class="mode-btn" data-mode="marks">Marks to %</button>
+                    <button class="mode-btn" data-mode="grade">Grade to %</button>
+                    <button class="mode-btn" data-mode="reverse">% to CGPA</button>
+                    <button class="mode-btn" data-mode="semester">SPI/SGPA to CGPA</button>
+                    <button class="mode-btn" data-mode="target">Target SPI</button>
+                    <button class="mode-btn" data-mode="history">History</button>
+                </div>
+
+                <!-- CGPA Converter -->
+                <div class="converter-section active" id="cgpa-converter">
+                    <h2 id="cgpa-title">CGPA to Percentage</h2>
+                    <div class="input-group">
+                        <label id="cgpa-input-label" for="cgpa-input">Enter CGPA</label>
+                        <input type="number" id="cgpa-input" placeholder="e.g., 8.5" step="0.01" min="0" max="10">
+                    </div>
+                    <div class="input-group">
+                        <label id="cgpa-scale-label" for="cgpa-scale">CGPA Scale</label>
+                        <select id="cgpa-scale">
+                            <option value="10">10 Point Scale</option>
+                            <option value="4">4 Point Scale</option>
+                            <option value="5">5 Point Scale</option>
+                        </select>
+                    </div>
+                    <button class="calculate-btn" onclick="calculateCGPA()">Calculate</button>
+                    <div class="result" id="cgpa-result"></div>
+                    <div class="export-buttons" id="cgpa-export" style="display: none;">
+                        <button class="export-btn" onclick="shareResult('cgpa')">WhatsApp</button>
+                        <button class="export-btn" onclick="copyResult('cgpa')">&#128203; Copy</button>
+                    </div>
+                    <div class="info-box">
+                        <strong>Note:</strong> Apply the selected formula to the metric named above and verify it against your transcript.
+                    </div>
+                </div>
+
+                <!-- SPI Converter -->
+                <div class="converter-section" id="spi-converter">
+                    <h2>SPI to Percentage</h2>
+                    <div class="input-group">
+                        <label for="spi-input">Enter SPI</label>
+                        <input type="number" id="spi-input" placeholder="e.g., 7.8" step="0.01" min="0" max="10">
+                    </div>
+                    <div class="input-group">
+                        <label for="spi-scale">SPI Scale</label>
+                        <select id="spi-scale">
+                            <option value="10">10 Point Scale</option>
+                            <option value="4">4 Point Scale</option>
+                        </select>
+                    </div>
+                    <button class="calculate-btn" onclick="calculateSPI()">Calculate</button>
+                    <div class="result" id="spi-result"></div>
+                    <div class="export-buttons" id="spi-export" style="display: none;">
+                        <button class="export-btn" onclick="shareResult('spi')">WhatsApp</button>
+                        <button class="export-btn" onclick="copyResult('spi')">&#128203; Copy</button>
+                    </div>
+                    <div class="info-box">
+                        <strong>Note:</strong> Apply a selected formula to SPI only if your institution specifies that conversion.
+                    </div>
+                </div>
+
+                <!-- Marks Converter -->
+                <div class="converter-section" id="marks-converter">
+                    <h2>Marks to Percentage</h2>
+                    <div class="input-group">
+                        <label for="obtained-marks">Marks Obtained</label>
+                        <input type="number" id="obtained-marks" placeholder="e.g., 450" step="0.01" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="total-marks">Total Marks</label>
+                        <input type="number" id="total-marks" placeholder="e.g., 500" step="0.01" min="0">
+                    </div>
+                    <button class="calculate-btn" onclick="calculateMarks()">Calculate</button>
+                    <div class="result" id="marks-result"></div>
+                    <div class="export-buttons" id="marks-export" style="display: none;">
+                        <button class="export-btn" onclick="shareResult('marks')">WhatsApp</button>
+                        <button class="export-btn" onclick="copyResult('marks')">&#128203; Copy</button>
+                    </div>
+                    <div class="info-box">
+                        <strong>Formula:</strong> Percentage = (Obtained Marks / Total Marks) &times; 100
+                    </div>
+                </div>
+
+                <!-- Grade Converter -->
+                <div class="converter-section" id="grade-converter">
+                    <h2>Grade to Percentage</h2>
+                    <div class="input-group">
+                        <label for="grade-input">Select Grade</label>
+                        <select id="grade-input">
+                            <option value="">-- Select Grade --</option>
+                            <option value="O">O (Outstanding)</option>
+                            <option value="A+">A+ (Excellent)</option>
+                            <option value="A">A (Very Good)</option>
+                            <option value="B+">B+ (Good)</option>
+                            <option value="B">B (Above Average)</option>
+                            <option value="C">C (Average)</option>
+                            <option value="D">D (Pass)</option>
+                            <option value="F">F (Fail)</option>
+                        </select>
+                    </div>
+                    <button class="calculate-btn" onclick="calculateGrade()">Convert</button>
+                    <div class="result" id="grade-result"></div>
+                    <div class="info-box">
+                        <strong>Note:</strong> Grade ranges may vary by institution
+                    </div>
+                </div>
+
+                <!-- Reverse Converter (Percentage to CGPA) -->
+                <div class="converter-section" id="reverse-converter">
+                    <h2 id="reverse-title">Percentage to CGPA</h2>
+                    <div class="input-group">
+                        <label id="percent-input-label" for="percent-input">Enter Percentage</label>
+                        <input type="number" id="percent-input" placeholder="e.g., 85" step="0.01" min="0" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label id="reverse-scale-label" for="reverse-scale">Target Scale</label>
+                        <select id="reverse-scale">
+                            <option value="10">10 Point Scale</option>
+                            <option value="4">4 Point Scale</option>
+                            <option value="5">5 Point Scale</option>
+                        </select>
+                    </div>
+                    <button class="calculate-btn" onclick="calculateReverse()">Calculate</button>
+                    <div class="result" id="reverse-result"></div>
+                    <div class="export-buttons" id="reverse-export" style="display: none;">
+                        <button class="export-btn" onclick="shareResult('reverse')">WhatsApp</button>
+                        <button class="export-btn" onclick="copyResult('reverse')">&#128203; Copy</button>
+                    </div>
+                    <div class="info-box">
+                        <strong>Note:</strong> This applies the inverse of the selected formula. Treat university conversions as estimates.
+                    </div>
+                </div>
+
+                <!-- History Section -->
+                <div class="converter-section" id="history-converter">
+                    <h2>Conversion History</h2>
+                    <div class="history-actions">
+                        <button class="export-btn" type="button" onclick="exportHistoryCSV()">Export CSV</button>
+                        <button class="export-btn" type="button" onclick="shareHistoryWhatsApp()">Share on WhatsApp</button>
+                    </div>
+                    <div id="history-list" class="history-list">
+                        <p class="empty-state">No conversions yet. Start converting to see your history!</p>
+                    </div>
+                    <button class="clear-btn" onclick="clearHistory()" style="display: none;" id="clear-history-btn">Clear History</button>
+                </div>
+
+                <!-- Semester SPI/SGPA to CGPA -->
+                <div class="converter-section" id="semester-converter">
+                    <h2>SPI/SGPA to Overall CGPA</h2>
+                    <p class="section-description">Enter each semester's SPI/SGPA and earned credits. CGPA is weighted by credits.</p>
+                    <div class="input-group">
+                        <label for="semester-scale">Grade point scale</label>
+                        <select id="semester-scale">
+                            <option value="10">10 Point Scale</option>
+                            <option value="4">4 Point Scale</option>
+                            <option value="5">5 Point Scale</option>
+                        </select>
+                    </div>
+                    <div class="semester-list" id="semester-list"></div>
+                    <button class="secondary-btn" id="add-semester-btn" type="button">+ Add semester</button>
+                    <button class="calculate-btn" id="calculate-semesters-btn" type="button">Calculate CGPA</button>
+                    <div class="result" id="semester-result" aria-live="polite"></div>
+                    <div class="export-buttons" id="semester-export" style="display: none;">
+                        <button class="export-btn" onclick="shareResult('semester')">WhatsApp</button>
+                        <button class="export-btn" onclick="copyResult('semester', this)">&#128203; Copy</button>
+                    </div>
+                    <div class="chart-container">
+                        <h3>SPI by semester</h3>
+                        <svg id="semester-chart" role="img" aria-label="Semester SPI chart" viewBox="0 0 640 260"></svg>
+                        <p class="chart-empty" id="chart-empty">Add semester results to see your chart.</p>
+                    </div>
+                    <div class="info-box">
+                        <strong>Formula:</strong> Overall CGPA = sum(SPI × semester credits) ÷ sum(semester credits)
+                    </div>
+                </div>
+
+                <!-- Target SPI Calculator -->
+                <div class="converter-section" id="target-converter">
+                    <h2>SPI Needed for Target CGPA</h2>
+                    <p class="section-description">Estimate the SPI needed in your next semester to reach your target CGPA.</p>
+                    <div class="input-group">
+                        <label for="current-cgpa">Current CGPA</label>
+                        <input type="number" id="current-cgpa" min="0" max="10" step="0.01" placeholder="e.g., 7.2">
+                    </div>
+                    <div class="input-group">
+                        <label for="completed-credits">Credits completed</label>
+                        <input type="number" id="completed-credits" min="0" step="0.5" placeholder="e.g., 80">
+                    </div>
+                    <div class="input-group">
+                        <label for="next-semester-credits">Credits in next semester</label>
+                        <input type="number" id="next-semester-credits" min="0.01" step="0.5" placeholder="e.g., 20">
+                    </div>
+                    <div class="input-group">
+                        <label for="target-cgpa">Target CGPA</label>
+                        <input type="number" id="target-cgpa" min="0" max="10" step="0.01" placeholder="e.g., 7.8">
+                    </div>
+                    <div class="input-group">
+                        <label for="target-scale">Grade point scale</label>
+                        <select id="target-scale">
+                            <option value="10">10 Point Scale</option>
+                            <option value="4">4 Point Scale</option>
+                            <option value="5">5 Point Scale</option>
+                        </select>
+                    </div>
+                    <button class="calculate-btn" id="calculate-target-btn" type="button">Calculate required SPI</button>
+                    <div class="result" id="target-result" aria-live="polite"></div>
+                    <div class="export-buttons" id="target-export" style="display: none;">
+                        <button class="export-btn" onclick="shareResult('target')">WhatsApp</button>
+                        <button class="export-btn" onclick="copyResult('target', this)">&#128203; Copy</button>
+                    </div>
+                    <div class="info-box">This estimate assumes the current CGPA is credit-weighted and the next semester's credits are known.</div>
+                </div>
+            </div>
+
+            <!-- Additional Tools -->
+            <div class="tools-section glass-card">
+                <h3>Quick Reference</h3>
+                <div class="reference-grid">
+                    <div class="reference-card">
+                        <h4>CGPA Scale</h4>
+                        <ul>
+                            <li>9.5-10.0 = 90-100%</li>
+                            <li>8.5-9.4 = 80-89%</li>
+                            <li>7.5-8.4 = 70-79%</li>
+                            <li>6.5-7.4 = 60-69%</li>
+                            <li>5.5-6.4 = 50-59%</li>
+                        </ul>
+                    </div>
+                    <div class="reference-card">
+                        <h4>Grade Points</h4>
+                        <ul>
+                            <li>O = 10 (90-100%)</li>
+                            <li>A+ = 9 (80-89%)</li>
+                            <li>A = 8 (70-79%)</li>
+                            <li>B+ = 7 (60-69%)</li>
+                            <li>B = 6 (50-59%)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Marks Converter. All rights reserved.</p>
+            <p>Made with &#10084;&#65039; for students</p>
+            <p>
+                <a class="github-link" href="https://github.com/Dhavalrathod1537" target="_blank" rel="noopener noreferrer" aria-label="Follow Dhaval Rathod on GitHub">
+                    <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.08c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.24.93.1-.72.39-1.21.7-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.04-1.15 3.04-1.15.61 1.54.23 2.68.12 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.23-5.11 5.51.4.35.75 1.03.75 2.08v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
+                    </svg>
+                    <span>Follow me on GitHub — Dhaval Rathod</span>
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
